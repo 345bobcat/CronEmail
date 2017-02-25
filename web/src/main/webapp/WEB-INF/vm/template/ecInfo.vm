@@ -1,0 +1,23 @@
+#set($layout="/layout/blank.vm")
+<link rel="stylesheet" href="/assets/css/base/modalExt.css">
+<div class="modal fade" id="showDataModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+     data-backdrop="static" style="height: 600px">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h5 class="modal-title" id="myModalLabel">查看详细</h5>
+            </div>
+            <div class="modal-body" style="height: 88%">
+                <table class="table table-bordered table-striped" style="word-break: break-all;">
+                    #foreach($param in ${emailConfig.keySet()})
+                        <tr>
+                            <th class="col-md-3">$param</th>
+                            <td class="col-md-12">$!{emailConfig.get($param)}</td>
+                        </tr>
+                    #end
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+<link rel="stylesheet" href="/assets/css/public/bootstrap.min.css">
+
+<script src="/assets/js/public/jquery.min.js"></script>
+<script src="/assets/js/public/jquery.validate.min.js"></script>
+<script src="/assets/js/public/bootstrap.min.js"></script>
+
+<nav class="navbar navbar-default" role="navigation" style="margin-top: 10px">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
+                class="icon-bar"></span><span class="icon-bar"></span></button>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">定时任务<strong class="caret"></strong></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="/cronRun/list">正在运行</a>
+                    </li>
+                    <li>
+                        <a href="/cronShow/list">定时任务</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">内容配置<strong class="caret"></strong></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="/emailConfig/ecList">邮件管理</a>
+                    </li>
+                    <li>
+                        <a href="/templateConfig/tcList">模板管理</a>
+                    </li>
+                    <li>
+                        <a href="/dbConfig/list">数据来源</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+<!--        <ul class="nav navbar-nav navbar-right" style="margin-right: 10px">
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span> 欢迎您：test</a></li>
+            <li><button type="button" class="btn btn-default btn-sm" style="margin-top: 10px"><span class="glyphicon glyphicon-log-out"></span>退出</button></li>
+        </ul>   -->
+    </div>
+</nav>
+<script>
+    $('li.dropdown').mouseover(function () {
+        $(this).addClass('open');
+    }).mouseout(function () {
+        $(this).removeClass('open');
+    });
+</script>

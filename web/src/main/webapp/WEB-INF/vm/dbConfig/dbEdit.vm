@@ -1,0 +1,61 @@
+#set($layout="/layout/blank.vm")
+<div class="modal fade" id="dbEditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+     data-backdrop="static" style="margin-top: 30px">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h5 class="modal-title">
+                    #if ($!{cronMetaDatasource.id})
+                        编辑
+                    #else
+                        新增
+                    #end
+                </h5>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="dbDataForm">
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">名称</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" name="name" id="name" value="$!{cronMetaDatasource.name}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="jdbcUrl" class="col-sm-2 control-label">数据库Url</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" name="jdbcUrl" id="jdbcUrl" value="$!{cronMetaDatasource.jdbcUrl}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="user" class="col-sm-2 control-label">用户名</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" name="user" id="user" value="$!{cronMetaDatasource.user}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-sm-2 control-label">密码</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" name="password" id="password" value="$!{cronMetaDatasource.password}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="comment" class="col-sm-2 control-label">备注</label>
+                        <div class="col-sm-9">
+                            <textarea name="comment" id="comment" class="form-control" rows="3">$!{cronMetaDatasource.comment}</textarea>
+                        </div>
+                    </div>
+                    <input type="hidden" name="id" value="$!{cronMetaDatasource.id}">
+                    <input type="hidden" name="driverClass" value="com.mysql.jdbc.Driver">
+                    <input type="hidden" name="queryerClass" value="com.dark.engine.query.MySqlQueryer">
+                    <input type="hidden" name="poolClass" value="com.dark.engine.dbpool.DruidDataSourcePool">
+                    <input type="hidden" name="options" value='{"initialSize":3,"maxActive":20,"minIdle":1,"maxWait":60000,"timeBetweenEvictionRunsMillis":60000,"minEvictableIdleTimeMillis":300000,"testWhileIdle":true,"testOnBorrow":false,"testOnReturn":false,"maxOpenPreparedStatements":20,"removeAbandoned":true,"removeAbandonedTimeout":1800,"logAbandoned":true}'>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" onclick="DbListJs.saveDC()">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>

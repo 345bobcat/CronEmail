@@ -1,0 +1,107 @@
+#set($layout="/layout/blank.vm")
+<div class="modal fade" id="showInfoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+     data-backdrop="static" style="height: 680px;margin-top: 10px;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h5 class="modal-title">
+                    #if ($templateConfig)
+                        编辑模板
+                    #else
+                        新建模板
+                    #end
+                </h5>
+            </div>
+            <div class="modal-body" style="height: 88%">
+                <form class="form-horizontal" id="tcDataForm">
+                    <div class="form-group" id="tcInfoType">
+                        <div class="col-sm-offset-2 col-sm-9">
+                            <label class="radio-inline">
+                                <input type="radio" name="typeOptions" id="dynamicTemplate" value="true" checked="checked"> 动态模板
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="typeOptions" id="staticTemplate" value="false"> 静态模板
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">模板名称</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" name="name" id="name" value="$!{templateConfig.name}">
+                        </div>
+                    </div>
+                    <div class="form-group" id="sqlSourceGroup">
+                        <label for="sqlSourceId" class="col-sm-2 control-label">数据源</label>
+                        <div class="col-sm-9">
+                            <select class="selectpicker form-control" data-size="8" id="sqlSourceId" name="sqlSourceId">
+                                <option value="">请选择</option>
+                                #foreach($cs in ${csList})
+                                    <option value="$!{cs.id}" #if($!{cs.id}==$!{templateConfig.sqlSourceId}) selected="selected" #end>$!{cs.name}</option>
+                                #end
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" id="sqlSentenceGroup">
+                        <label for="sqlSentence" class="col-sm-2 control-label">SQL语句
+                            <button type="button" class="btn btn-sm btn-info" style="margin-top: 80px">测试</button>
+                        </label>
+                        <div class="col-sm-9">
+                            <textarea name="sqlSentence" id="sqlSentence" value="$!{templateConfig.sqlSentence}">$!{templateConfig.sqlSentence}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="comment" class="col-sm-2 control-label">备注</label>
+                        <div class="col-sm-9">
+                            <textarea name="comment" id="comment" class="form-control" rows="3">$!{templateConfig.comment}</textarea>
+                        </div>
+                    </div>
+                    <input type="hidden" name="tcId" id="tcId" value="$!{templateConfig.tcId}">
+                    <input type="hidden" id="sourceIdBak" value="$!{templateConfig.sqlSourceId}">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" onclick="TcListJs.saveTemplate()">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<link href="/assets/public/bootstrap-select-1.12.2/dist/css/bootstrap-select.min.css" rel="stylesheet" />
+<script src="/assets/public/bootstrap-select-1.12.2/dist/js/bootstrap-select.min.js"></script>
+<script>
+    $(document).ready(function() {
+        //编辑的时候，弹层初始化面板
+        if($("#tcId").val()!=""){
+            $("#tcInfoType").hide();
+            if($("#sourceIdBak").val()==""){//静态模板
+                $("#dynamicTemplate").removeAttr("checked");
+                $("#staticTemplate").attr("checked","checked");
+                $("#showInfoModal").css({"height":"340px", "margin-top":"50px"});
+                $("#sqlSourceGroup").hide();
+                $("#sqlSentenceGroup").hide();
+            }else{
+                $("#dynamicTemplate").attr("checked","checked");
+                $("#staticTemplate").removeAttr("checked");
+                $("#showInfoModal").css({"height":"640px", "margin-top":"10px"});
+                $("#sqlSourceGroup").show();
+                $("#sqlSentenceGroup").show();
+            }
+        }
+    });
+
+    //切换模板
+    $("input:radio[name='typeOptions']").change(function(){
+        var type=$('input:radio[name="typeOptions"]:checked').val();
+        if(type=="true"){
+            $("#showInfoModal").css({"height":"680px", "margin-top":"10px"});
+            $("#sqlSourceGroup").show();
+            $("#sqlSentenceGroup").show();
+        }
+        if(type=="false"){
+            $("#showInfoModal").css({"height":"380px", "margin-top":"50px"});
+            $("#sqlSourceGroup").hide();
+            $("#sqlSentenceGroup").hide();
+        }
+    });
+</script>

@@ -1,0 +1,81 @@
+#set($layout="/layout/blank.vm")
+<div class="modal fade" id="csEditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+     data-backdrop="static" style="margin-top: 30px">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h5 class="modal-title">
+                    #if ($!{scheduleJob.scheduleJobId})
+                        编辑
+                    #else
+                        新增
+                    #end
+                </h5>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="csDataForm">
+                    <div class="form-group">
+                        <label for="jobName" class="col-sm-3 control-label">任务名称</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" name="jobName" id="jobName" value="$!{scheduleJob.jobName}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="jobGroup" class="col-sm-3 control-label">任务分组</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" name="jobGroup" id="jobGroup" value="$!{scheduleJob.jobGroup}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="cronExpression" class="col-sm-3 control-label">时间表达式</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" name="cronExpression" id="cronExpression" value="$!{scheduleJob.cronExpression}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="status" class="col-sm-3 control-label">是否立即生效</label>
+                        <div class="col-sm-8">
+                            <label class="radio-inline">
+                                <input type="radio" name="status" value="1" #if(!$!{scheduleJob.scheduleJobId} || $!{scheduleJob.status}=="1") checked="checked" #end> 是
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="status" value="0" #if($!{scheduleJob.status}=="0") checked="checked" #end> 否
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="isSync" class="col-sm-3 control-label">是否同步</label>
+                        <div class="col-sm-8">
+                            <label class="radio-inline">
+                                <input type="radio" name="isSync" id="sync" value="true" checked="checked"> 同步
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="isSync" id="async" value="false"> 异步
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group" id="sqlSourceGroup">
+                        <label for="ecId" class="col-sm-3 control-label">邮件模板</label>
+                        <div class="col-sm-8">
+                            <select class="selectpicker form-control" data-size="8" id="ecId" name="ecId">
+                                <option value="">请选择</option>
+                                #foreach($ec in ${ecList})
+                                    <option value="$!{ec.ecId}" #if($!{ec.ecId}==$!{scheduleJob.ecId}) selected="selected" #end>$!{ec.subject}</option>
+                                #end
+                            </select>
+                        </div>
+                    </div>
+                    <input type="hidden" name="scheduleJobId" value="$!{scheduleJob.scheduleJobId}">
+                    <input type="hidden" name="keyword" value="delUpdate">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" onclick="CsListJs.save()">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<link href="/assets/public/bootstrap-select-1.12.2/dist/css/bootstrap-select.min.css" rel="stylesheet" />
+<script src="/assets/public/bootstrap-select-1.12.2/dist/js/bootstrap-select.min.js"></script>

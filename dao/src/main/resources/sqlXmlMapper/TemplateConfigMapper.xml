@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dark.dao.TemplateConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.dark.model.TemplateConfig" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <constructor >
+      <idArg column="tc_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="save_path" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="suffix" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="file_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="back_user" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sql_sentence" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sql_source_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="comment" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="gmt_created" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="gmt_modified" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+</mapper>

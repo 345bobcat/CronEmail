@@ -1,0 +1,112 @@
+<style type="text/css">
+    .CodeMirror {font-size: small}
+</style>
+
+<table id="tcSource" class="cell-border stripe hover" cellspacing="0" style="font-size: smaller; word-break: break-all">
+    <thead>
+    <tr style="background-color: #d9edf7;" class="dtTable">
+        <th>tcId</th>
+        <th>名称</th>
+        <!-- velocity生成代码模板用，后期集成 -->
+#*        <th>路径</th>
+        <th>文件后缀</th>
+        <th>文件名称</th>*#
+        <th>模板</th>
+        <th>sql语句</th>
+        <th>数据源</th>
+        <th>创建人</th>
+        <th>备注</th>
+        <th>操作</th>
+        <th>创建时间</th>
+        <th>更新时间</th>
+    </tr>
+    </thead>
+</table>
+
+<div class="modal fade" id="showDataDesignModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+     data-backdrop="static" style="height: 700px">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h5 class="modal-title">模板设计</h5>
+            </div>
+            <div class="modal-body">
+                <textarea id="templateContent"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" onclick="TcListJs.saveDesignBtn()">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="showDataCodeModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+     data-backdrop="static" style="height: 700px">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h5 class="modal-title">模板代码</h5>
+            </div>
+            <div class="modal-body">
+                <textarea id="contentCode"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" onclick="TcListJs.saveTemplateBtn()">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="showSqlModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+     data-backdrop="static" style="height: 580px">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h5 class="modal-title">SQL编辑</h5>
+            </div>
+            <div class="modal-body">
+                <textarea id="code"></textarea>
+            </div>
+            <div class="modal-footer">
+               <!-- <button type="button" class="btn btn-success" style="float:left">执行</button> -->
+                <button type="button" class="btn btn-warning" onclick="TcListJs.saveSqlBtn()">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="templateInfo"></div>
+<input type="hidden" id="tcId"/>
+<link rel="stylesheet" href="/assets/css/public/jquery.dataTables.min.css">
+<link rel="stylesheet" href="/assets/css/base/dataTables.css">
+<link rel="stylesheet" href="/assets/public/kindeditor-4.1.7/themes/default/default.css" />
+<link rel="stylesheet" href="/assets/css/base/modalExt.css">
+<script src="/assets/js/public/jquery.dataTables.min.js"></script>
+<script src="/assets/public/jquery-ui/jquery-ui.min.js"></script>
+<script src="/assets/js/base/dataTablesPaging.js"></script>
+<script src="/assets/js/base/transferSpecial.js"></script>
+<script charset="utf-8" src="/assets/public/kindeditor-4.1.7/kindeditor-min.js"></script>
+<script charset="utf-8" src="/assets/public/kindeditor-4.1.7/lang/zh_CN.js"></script>
+
+<!-- codeMirror -->
+<link rel="stylesheet" href="/assets/public/codemirror-5.23.0%202/theme/rubyblue.css">
+<link rel="stylesheet" href="/assets/public/codemirror-5.23.0%202/lib/codemirror.css">
+<link rel="stylesheet" href="/assets/public/codemirror-5.23.0%202/addon/hint/show-hint.css">
+<script src="/assets/public/codemirror-5.23.0%202/lib/codemirror.js"></script>
+<script src="/assets/public/codemirror-5.23.0%202/mode/sql/sql.js"></script>
+<script src="/assets/public/codemirror-5.23.0%202/mode/velocity/velocity.js"></script>
+<script src="/assets/public/codemirror-5.23.0%202/mode/htmlmixed/htmlmixed.js"></script>
+<script src="/assets/public/codemirror-5.23.0%202/mode/css/css.js"></script>
+<script src="/assets/public/codemirror-5.23.0%202/mode/javascript/javascript.js"></script>
+<script src="/assets/public/codemirror-5.23.0%202/mode/xml/xml.js"></script>
+<script src="/assets/public/codemirror-5.23.0%202/addon/hint/show-hint.js"></script>
+<script src="/assets/public/codemirror-5.23.0%202/addon/hint/sql-hint.js"></script>
+<script src="/assets/public/codemirror-5.23.0%202/addon/display/autorefresh.js"></script>
+
+<script src="/assets/js/base/dateFormat.js"></script>
+<script src="/assets/js/template/tcList.js"></script>

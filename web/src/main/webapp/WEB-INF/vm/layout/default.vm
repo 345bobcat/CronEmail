@@ -1,0 +1,14 @@
+<head>
+    <title>CronEmail</title>
+    <link rel="shortcut icon" href="/assets/img/favicon.ico"/>
+    <link rel="bookmark" href="/assets/img/favicon.ico"/>
+</head>
+<div class="container" style="width: 85%">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            #include("/layout/top.vm")
+            $screen_content
+        </div>
+    </div>
+</div>
+#include("/layout/foot.vm")

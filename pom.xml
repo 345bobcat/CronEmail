@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.dark</groupId>
+    <artifactId>cronEmail</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>common</module>
+        <module>service</module>
+        <module>dao</module>
+        <module>web</module>
+        <module>model</module>
+        <module>api</module>
+        <module>engine</module>
+    </modules>
+
+    <!-- 打包配置信息 -->
+    <profiles>
+        <profile>
+            <!-- 开发环境 -->
+            <id>develop</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <!--jdbc.properties -->
+                <cron.jdbc.driverClass>com.mysql.jdbc.Driver</cron.jdbc.driverClass>
+                <cron.jdbc.jdbcUrl>jdbc:MySql://127.0.0.1:3306/cron_email?characterEncoding=UTF-8</cron.jdbc.jdbcUrl>
+                <cron.jdbc.username>root</cron.jdbc.username>
+                <cron.jdbc.password>bobcat</cron.jdbc.password>
+
+                <!-- mail.properties -->
+                <cron.mail.send.server>smtp.qq.com</cron.mail.send.server>
+                <cron.mail.send.username>3173579082</cron.mail.send.username>
+                <cron.mail.send.fromAddress>3173579082@qq.com</cron.mail.send.fromAddress>
+                <cron.mail.send.password>XXXXXXXXXX</cron.mail.send.password>
+            </properties>
+        </profile>
+    </profiles>
+
+    <properties>
+        <org.spring.version>4.3.4.RELEASE</org.spring.version>
+        <module.version>1.0-SNAPSHOT</module.version>
+        <quartz.version>2.2.1</quartz.version>
+        <junit.version>4.12</junit.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${org.spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context-support</artifactId>
+                <version>${org.spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${org.spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${org.spring.version}</version>
+            </dependency>
+
+            <!--定时任务包-->
+            <dependency>
+                <groupId>org.quartz-scheduler</groupId>
+                <artifactId>quartz</artifactId>
+                <version>${quartz.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.dark</groupId>
+                <artifactId>common</artifactId>
+                <version>${module.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dark</groupId>
+                <artifactId>dao</artifactId>
+                <version>${module.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dark</groupId>
+                <artifactId>model</artifactId>
+                <version>${module.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dark</groupId>
+                <artifactId>service</artifactId>
+                <version>${module.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.dark</groupId>
+                <artifactId>engine</artifactId>
+                <version>${module.version}</version>
+            </dependency>
+            <!-- 数据库连接池 -->
+            <!--druid-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.0.11</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>4.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.4</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

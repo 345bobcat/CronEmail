@@ -1,0 +1,40 @@
+#set($layout="/layout/blank.vm")
+<link rel="stylesheet" href="/assets/css/base/modalExt.css">
+<div class="modal fade" id="showDataModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+     data-backdrop="static" style="height: 600px">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h5 class="modal-title" id="myModalLabel">查看详细</h5>
+            </div>
+            <div class="modal-body" style="height: 88%">
+                <table class="table table-bordered table-striped" style="word-break: break-all;">
+                    #foreach($param in ${cronDataSource.keySet()})
+                    <tr>
+                        <th class="col-md-3">$param</th>
+                        #if($param=="options")
+                            <td class="col-md-12">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th class="col-md-3">配置项</th>
+                                    <th class="col-md-1">配置值</th>
+                                </tr>
+                                #foreach($option in ${options.keySet()})
+                                    <tr>
+                                        <td>$option</td>
+                                        <td>${options.get($option)}</td>
+                                    </tr>
+                                #end
+                            </table>
+                            </td>
+                        #else
+                            <td class="col-md-12">$!{cronDataSource.get($param)}</td>
+                        #end
+                        </tr>
+                    #end
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

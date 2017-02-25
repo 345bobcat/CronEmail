@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dark.dao.ScheduleJobMapper" >
+  <resultMap id="BaseResultMap" type="com.dark.model.ScheduleJob" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <constructor >
+      <idArg column="schedule_job_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="job_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="job_group" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="status" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="cron_expression" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="is_sync" jdbcType="BOOLEAN" javaType="java.lang.Boolean" />
+      <arg column="ec_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="description" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="gmt_create" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="gmt_modify" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+</mapper>
