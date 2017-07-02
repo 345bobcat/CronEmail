@@ -1,5 +1,5 @@
 # cronEmail
-Spring整合Quartz基于数据库的分布式定时任务，可动态添加、删除、修改定时任务。
+SpringMVC整合quartz，datatables，velocity邮件模板，通过动态配置数据源和设置sql和velocity模板，定时发送邮件。
 
 ##使用框架：
    前端整体框架使用bootstrap，静态模板设计使用kindeditor，动态模板设计以及sql编辑使用
