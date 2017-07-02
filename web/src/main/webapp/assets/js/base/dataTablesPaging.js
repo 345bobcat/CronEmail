@@ -15,7 +15,15 @@ DtTablePaging.mainTableInfo = {
             json.recordsTotal = json.data.recordsTotal;
             json.recordsFiltered = json.data.recordsFiltered;
             return json.data.data;
-        }
+        }/*,
+        "data": function (d) {
+            var param = {
+                "DRAW": d.draw,
+                "START": d.start,
+                "LIMIT": d.length
+            };
+            return param;
+        }*/
     },
     "language": {
         "info":"第 _START_ 到第 _END_ 条数据；共 _TOTAL_ 条记录",
